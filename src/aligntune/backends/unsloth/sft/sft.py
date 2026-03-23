@@ -891,8 +891,10 @@ class UnslothSFTTrainer(SFTTrainerBase):
             lr = getattr(self.config.train, 'learning_rate', 2e-4) if hasattr(self.config, 'train') else 2e-4
             save_steps = getattr(self.config.train, 'save_interval', 500) if hasattr(self.config, 'train') else 500
             output_dir = getattr(self.config.logging, 'output_dir', './output') if hasattr(self.config, 'logging') else './output'
+            eval_strategy = getattr(self.config.train, 'eval_strategy', 'no') if hasattr(self.config, 'train') else 'no'
+
             eval_interval = getattr(self.config.train, 'eval_interval', 500) if hasattr(self.config, 'train') else 500
-            eval_strategy = getattr(self.config.train, 'eval_strategy', 'steps') if hasattr(self.config, 'train') else 'steps'
+           
             # === UNIFIED PRECISION HANDLING ===
             precision = PrecisionHandler.get_precision_from_config(self.config, default="auto")
             precision_args = PrecisionHandler.get_training_args_precision(precision)
