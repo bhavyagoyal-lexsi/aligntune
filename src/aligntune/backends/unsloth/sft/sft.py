@@ -913,7 +913,7 @@ class UnslothSFTTrainer(SFTTrainerBase):
                 **precision_args,  
                 dataloader_pin_memory=False,
                 report_to="none" if not hasattr(self.config, 'logging') else "tensorboard"
-                evaluation_strategy=eval_strategy,
+                eval_strategy=eval_strategy,
                 eval_steps=eval_interval
             )
             
